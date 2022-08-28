@@ -1,0 +1,5 @@
+.someone{
+    background: var(--dark-brown);
+    color: var(--light);
+    border-bottom-left-radius: 0;
+}

@@ -1,0 +1,8 @@
+.account-info{
+    align-items: center;
+    display: flex;
+    color: var(--dark)
+}
+.account-name{
+    margin-right: .75em;
+}

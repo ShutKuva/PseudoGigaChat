@@ -1,0 +1,11 @@
+.wrapper{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-auto-rows: 100%;
+}
+.left-side{
+    box-sizing: border-box;
+    height: 100%;
+    background: var(--brown);
+}

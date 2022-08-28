@@ -1,0 +1,5 @@
+<div class="group-wrapper">
+    <button *ngFor="let group of groups" class="group" (click)="groupSelected(group.id)">
+        {{group.name}}
+    </button>
+</div>

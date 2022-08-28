@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Mukta', sans-serif;
+}
+:root{
+    --light-brown: #E1CEC1;
+    --light: #ECE2D0;
+    --dark: #6D2E46;
+    --pre-dark-brown: #BC908E;
+    --brown: #D5B9B2;
+    --dark-brown: #A26769;
+    --font: 'Mukta', sans-serif;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.btn{
+    background: var(--brown);
+    color: var(--dark);
+    border: 0;
+    border-radius: .5em;
+    padding: .5em 1em;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background .1s ease-in-out, color .1s ease-in-out;
+}
+.btn:hover{
+    background: var(--dark-brown);
+    color: var(--light)
+}
+.btn:disabled .btn:hover{
+    background: var(--brown);
+    color: var(--dark);
+}
+
+input{
+    padding: .7em 1.5em;
+    background: var(--light-brown);
+    border-radius: .75em;
+    border: 1px solid var(--brown);
+    color: var(--dark);
+}
+input:focus-visible{
+    border: 1px solid var(--dark);
+    outline: 0;
+}
+
+.message{
+    padding: .3em 1em;
+    border-radius: .5em;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+}
+.message-input{
+    box-sizing: border-box;
+    padding: .5em;
+    width: 100%;
+    height: 100%;
+    border-radius: .5em;
+    border: 1px solid var(--dark);
+    background: var(--light-brown);
+    color: var(--dark);
+}
+.send-message{
+    display: block;
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+}
+.replied{
+    font-size: .8em;
+}
+
+.reply-text{
+    text-overflow: ellipsis;
+}
+
+.light{
+    color: var(--light);
+}

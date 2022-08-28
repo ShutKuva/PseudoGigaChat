@@ -1,0 +1,9 @@
+<div class="account-info" *ngIf="authenticated; else noLogedIn">
+    <h3 class="account-name">Account</h3>
+    <button class="btn" (click)="logout()">Logout</button>
+</div>
+<ng-template #noLogedIn>
+    <div class="account-info">
+        <button class="btn" (click)="login()">Login</button>
+    </div>
+</ng-template>

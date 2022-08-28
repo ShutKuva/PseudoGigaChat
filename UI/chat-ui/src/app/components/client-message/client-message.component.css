@@ -1,0 +1,9 @@
+.you{
+    background: var(--brown);
+    color: var(--dark);
+    text-align: end;
+    border-bottom-right-radius: 0%;
+}
+.text-wrapper{
+    position: relative;
+}

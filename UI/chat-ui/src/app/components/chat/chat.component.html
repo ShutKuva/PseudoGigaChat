@@ -1,0 +1,4 @@
+<div class="wrapper">
+    <app-left-side [ngClass]="['left-side']" (groupChosen)="getGroup($event)"></app-left-side>
+    <app-right-side [groupId]="groupId"></app-right-side>
+</div>

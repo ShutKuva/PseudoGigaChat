@@ -1,0 +1,21 @@
+<div class="chat-wrap">
+    <button class="btn" *ngIf="groupId != 0" [disabled]="groupId == 0 || !canBeLessPages" (click)="previousPage()"><</button>
+        <div class="chat">
+            <div *ngFor="let message of messages" [ngClass]="{'someone': message.user.id != user!.id, 'you': message.user.id == user!.id}">
+                <app-someone-message *ngIf="message.user.id != user!.id; else yours" [message]="message"
+                    (replied)="changeReply(message)" (repliedAndRedirect)="changeReplyAndRedirect(message, $event)"></app-someone-message>
+                <ng-template #yours>
+                    <app-client-message [message]="message" (edited)="editMessage(message.id, $event)" (deleted)="deleteMessage(message.id)" (replied)="changeReply(message)"></app-client-message>
+                </ng-template>
+            </div>
+        </div>
+    <button class="btn" *ngIf="groupId != 0" [disabled]="groupId == 0 || !canBeMorePages" (click)="nextPage()">></button>
+</div>
+<div class="message-input-wrapper">
+    <div class="reply-div" *ngIf="currentlyReplying != null">
+        <p class="reply-text light">{{currentlyReplying?.text}}</p>
+        <button class="btn" (click)="clearReplying()">x</button>
+    </div>
+    <textarea cols="30" rows="5" class="message-input" [disabled]="groupId == 0" [formControl]="messageInput"></textarea>
+    <button class="btn send-message" [disabled]="groupId == 0" (click)="sendMessage()">Send</button>
+</div>

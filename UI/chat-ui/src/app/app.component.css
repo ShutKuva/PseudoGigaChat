@@ -1,0 +1,29 @@
+.container{
+    width: 80vw;
+    height: 100%;
+    margin: 0 auto;
+}
+.global-wrap{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 100vh;
+}
+header{
+    background: var(--light-brown);
+    padding: 1em 0;
+}
+.header{
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+}
+.header-info{
+    grid-column: 2/3;
+}
+
+main{
+    flex: 0 1 auto;
+    height: 100%;
+    background: var(--light);
+}
