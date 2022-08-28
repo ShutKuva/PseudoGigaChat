@@ -7,10 +7,12 @@ namespace BLL
     public class GroupService : IGroupService
     {
         private readonly ICRUDService<Group> _groupService;
+        private readonly ICRUDService<GroupUser> _groupUserService;
 
-        public GroupService(ICRUDService<Group> groupService)
+        public GroupService(ICRUDService<Group> groupService, ICRUDService<GroupUser> groupUser)
         {
             _groupService = groupService;
+            _groupUserService = groupUser;
         }
 
         public async Task<int> GetPrivateGroup(int firstId, int secondId)
@@ -34,12 +36,11 @@ namespace BLL
 
             Group firstGroup = emptyGroups.First();
 
-            firstGroup.GroupUsers = new List<GroupUser>() { 
-                new GroupUser{ GroupId = firstGroup.Id, UserId = firstId },
-                new GroupUser{ GroupId = firstGroup.Id, UserId = secondId }
-            };
+            GroupUser forFirst = new GroupUser { GroupId = firstGroup.Id, UserId = firstId };
+            GroupUser forSecond = new GroupUser { GroupId = firstGroup.Id, UserId = secondId };
 
-            await _groupService.Edit(firstGroup);
+            await _groupUserService.Create(forFirst);
+            await _groupUserService.Create(forSecond);
 
             return firstGroup.Id;
         }

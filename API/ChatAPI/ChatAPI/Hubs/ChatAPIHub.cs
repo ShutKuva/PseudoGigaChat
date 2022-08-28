@@ -10,5 +10,7 @@ namespace ChatAPI.Hubs
     public interface IChatHub
     {
         public Task UpdateMessages(IEnumerable<MessageDTO> messgaes, int groupId, int newMaxPage);
+
+        public Task GroupsUpdated(int firstId, int secondId);
     }
 }

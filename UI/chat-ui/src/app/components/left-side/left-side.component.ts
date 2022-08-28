@@ -3,6 +3,7 @@ import { first } from 'rxjs';
 import { GroupDTO } from 'src/app/models/groupDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpConnectionService } from 'src/app/services/http-connection.service';
+import { SignalConnectionService } from 'src/app/services/signalr-connection.service';
 
 @Component({
   selector: 'app-left-side',
@@ -14,12 +15,18 @@ export class LeftSideComponent implements OnInit {
 
   @Output() groupChosen: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private httpService: HttpConnectionService, private authService: AuthService) { }
+  handleRegistered: boolean = false;
+
+  constructor(private httpService: HttpConnectionService, private authService: AuthService, private signalrService: SignalConnectionService) { }
 
   ngOnInit(): void {
-    this.authService.tokenChanged.push({callback: this.getGroups.bind(this)});
+    this.authService.tokenChanged.push({callback: () => {
+      this.tryRegisterHandle();
+      this.getGroups();
+    }});
 
     if(this.authService.token){
+      this.tryRegisterHandle();
       this.getGroups();
     }
   }
@@ -41,5 +48,15 @@ export class LeftSideComponent implements OnInit {
 
   groupSelected(id: number){
     this.groupChosen.emit(id);
+  }
+
+  private tryRegisterHandle(){
+    if(!this.handleRegistered && this.signalrService.conected){
+      this.signalrService.registerNewHandler("GroupsUpdated", (firstId: number, secondId: number) =>{
+        this.getGroups();
+      });
+
+      this.handleRegistered = true;
+    }
   }
 }

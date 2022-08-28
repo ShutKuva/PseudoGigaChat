@@ -19,7 +19,9 @@ namespace BLL
                 return new GroupDTO() { Id = group.Id, Name = group.Name };
             }
 
-            return new GroupDTO() { Id = group.Id, Name = group.GroupUsers.First(gu => gu.UserId != _userId).User.Name };
+            return new GroupDTO() { Id = group.Id, Name = group.GroupUsers.First(gu => {
+                return gu.UserId != _userId; 
+            }).User.Name };
         }
     }
 }

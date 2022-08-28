@@ -139,6 +139,8 @@ namespace ChatAPI.Controllers
 
             int groupId = await _groupService.GetPrivateGroup(id, userId);
 
+            await _hub.Clients.All.GroupsUpdated(id, userId);
+
             return Ok(groupId);
         }
 

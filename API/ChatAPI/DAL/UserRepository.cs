@@ -13,7 +13,7 @@ namespace DAL
         {
             User user = await _context.Set<User>().FirstAsync(u => u.Id == id);
 
-            _context.Set<GroupUser>().Where(gu => gu.UserId == id).Include(gu => gu.Group).Load();
+            _context.Set<GroupUser>().Include(gu => gu.Group).Include(gu => gu.User).Load();
 
             return user;
         }

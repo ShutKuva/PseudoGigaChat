@@ -3,7 +3,7 @@
         <div class="chat">
             <div *ngFor="let message of messages" [ngClass]="{'someone': message.user.id != user!.id, 'you': message.user.id == user!.id}">
                 <app-someone-message *ngIf="message.user.id != user!.id; else yours" [message]="message"
-                    (replied)="changeReply(message)" (repliedAndRedirect)="changeReplyAndRedirect(message, $event)"></app-someone-message>
+                    (replied)="changeReply(message)" (repliedAndRedirect)="changeReplyAndRedirect(message, $event)" (redirect)="redirect($event)"></app-someone-message>
                 <ng-template #yours>
                     <app-client-message [message]="message" (edited)="editMessage(message.id, $event)" (deleted)="deleteMessage(message.id)" (replied)="changeReply(message)"></app-client-message>
                 </ng-template>

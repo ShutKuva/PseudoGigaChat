@@ -131,6 +131,16 @@ export class RightSideComponent implements OnChanges {
     });
   }
 
+  redirect(id: number){
+    this.httpService.get<number>(`/api/Source/private/${id}`)?.pipe(first()).subscribe(response => {
+      if(response.ok){
+        this.groupId = response.body!;
+
+        this.getMessagesAndUser();
+      }
+    });
+  }
+
   clearReplying(){
     this.currentlyReplying = null;
   }

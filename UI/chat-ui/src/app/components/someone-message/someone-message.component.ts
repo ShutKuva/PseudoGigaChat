@@ -11,6 +11,7 @@ export class SomeoneMessageComponent implements OnInit {
 
   @Output() replied: EventEmitter<any> = new EventEmitter<any>();
   @Output() repliedAndRedirect: EventEmitter<number> = new EventEmitter<number>();
+  @Output() redirect: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
